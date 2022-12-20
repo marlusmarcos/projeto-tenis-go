@@ -11,7 +11,7 @@ var waitGroup sync.WaitGroup
 
 var pointsP1 int32 = 0
 var pointsP2 int32 = 0
-//var jogadas =1
+
 
 func player(controle chan int, nome string) {
 	defer waitGroup.Done()
@@ -22,7 +22,7 @@ func player(controle chan int, nome string) {
 		}
 
 		rand.Seed(time.Now().UnixNano())
-		if(rand.Intn(1000)%2==0 || rand.Intn(1000)%3==0){
+		if(rand.Intn(1000)%2==0 || rand.Intn(1000)%3==0 || rand.Intn(1000)%5==0){
 			fmt.Printf("Jogador %s acertou a bola.\n", nome)
 
 			controle <- 1
@@ -56,19 +56,7 @@ func player(controle chan int, nome string) {
 				}
 			}
 			controle <- 1
-		}/*
-		if pointsP1 == 5 || pointsP2 == 5 {
-			fmt.Printf("O jogo acaboou!! o jogador")
-			if (pointsP1 == 5) {
-				fmt.Print("O jogador Messi venceu!!")
-			} else {
-				fmt.Printf("O jogador CR7 venceu!!")
-			}
-			close(controle)
-			return
-		}*/
-		
-		//controle <- 1
+		}
 		
 	}
 }
